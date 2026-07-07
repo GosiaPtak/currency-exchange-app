@@ -137,7 +137,23 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
+# Angular CLI cache
+.angular/
+
 # Vite files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Capacitor / native build artifacts
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/**/*.iml
+ios/App/build/
+ios/App/DerivedData/
+ios/App/Pods/
+ios/App/App/public/
+xcuserdata/
+*.xcuserstate
