@@ -112,9 +112,7 @@ export class HomePage implements OnInit {
       )
       .subscribe((value) => {
         this.loading.set(false);
-        if (value !== null) {
-          this.result.set(value);
-        }
+        value !== null && this.result.set(value);
       });
 
     this.rateRequest$

@@ -54,8 +54,6 @@ export class SettingsPage {
   }
 
   onThemeChange(value: string | number | undefined): void {
-    if (value === 'light' || value === 'dark' || value === 'system') {
-      this.theme.setMode(value);
-    }
+    (value === 'light' || value === 'dark' || value === 'system') && this.theme.setMode(value);
   }
 }
