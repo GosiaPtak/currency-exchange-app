@@ -4,7 +4,26 @@
       "Bash(xcodebuild -downloadPlatform iOS)",
       "Bash(xcodebuild -project App.xcodeproj -scheme App -sdk iphonesimulator -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 17' build)",
       "Bash(pkill -f \"remote-debugging-port=9333\")",
-      "Bash(brew install *)"
+      "Bash(brew install *)",
+      "Bash(curl -s \"https://registry.npmjs.org/@capacitor/assets/latest\")",
+      "Bash(node -pe 'JSON.parse\\(require\\(\"fs\"\\).readFileSync\\(0\\)\\).version')",
+      "Bash(sips -g hasAlpha -g pixelWidth -g pixelHeight /private/tmp/claude-501/-Users-malgorzataptak-GitHub-projekty-currency-exchange-app/6afef82d-7c9e-4c32-b81c-a8cb2b6968b0/scratchpad/icon-design/icon-foreground-1024.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(mkdir -p resources/android resources/ios)",
+      "Bash(cp __TRACKED_VAR__/icon-1024.png resources/icon.png)",
+      "Bash(cp __TRACKED_VAR__/icon-foreground-1024.png resources/android/icon-foreground.png)",
+      "Bash(cp __TRACKED_VAR__/icon-background-1024.png resources/android/icon-background.png)",
+      "Bash(cp __TRACKED_VAR__/icon-1024.png resources/ios/icon.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png android/app/src/main/res/drawable-port-xxxhdpi/splash.png ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png)",
+      "Bash(rm -f resources/android/icon-foreground.png resources/android/icon-background.png resources/icon.png)",
+      "Bash(cp __TRACKED_VAR__/icon-1024.png resources/icon-only.png)",
+      "Bash(cp __TRACKED_VAR__/icon-foreground-1024.png resources/logo.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png)",
+      "Bash(cp \"/Users/malgorzataptak/GitHub projekty/currency-exchange-app/android/app/build/outputs/bundle/release/app-release.aab\" \"/Users/malgorzataptak/Desktop/CurrencyExchange-release.aab\")",
+      "Read(//Users/malgorzataptak/Desktop/**)",
+      "Bash(mkdir -p \"/Users/malgorzataptak/Desktop/CurrencyExchange-signing-key-BACKUP-ME\")",
+      "Bash(cp \"/Users/malgorzataptak/GitHub projekty/currency-exchange-app/android/keystore/release.keystore\" \"/Users/malgorzataptak/Desktop/CurrencyExchange-signing-key-BACKUP-ME/\")",
+      "Bash(cp \"/Users/malgorzataptak/GitHub projekty/currency-exchange-app/android/keystore/keystore.properties\" \"/Users/malgorzataptak/Desktop/CurrencyExchange-signing-key-BACKUP-ME/\")"
     ]
   }
 }
