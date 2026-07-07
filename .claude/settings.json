@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcodebuild -downloadPlatform iOS)",
+      "Bash(xcodebuild -project App.xcodeproj -scheme App -sdk iphonesimulator -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 17' build)",
+      "Bash(pkill -f \"remote-debugging-port=9333\")",
+      "Bash(brew install *)"
+    ]
+  }
+}

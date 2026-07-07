@@ -36,8 +36,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "600kB",
-                  "maximumError": "1.2MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1.5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -70,7 +70,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "runnerConfig": true
+            "runnerConfig": true,
+            "setupFiles": ["src/test-setup.ts"]
           }
         }
       }

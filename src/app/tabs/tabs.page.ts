@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { swapHorizontalOutline, settingsOutline } from 'ionicons/icons';
 import {
@@ -8,6 +8,7 @@ import {
   IonIcon,
   IonLabel,
 } from '@ionic/angular/standalone';
+import { TranslationService } from '../core/translation.service';
 
 @Component({
   selector: 'app-tabs',
@@ -15,6 +16,8 @@ import {
   templateUrl: './tabs.page.html',
 })
 export class TabsPage {
+  protected readonly i18n = inject(TranslationService);
+
   constructor() {
     addIcons({ swapHorizontalOutline, settingsOutline });
   }

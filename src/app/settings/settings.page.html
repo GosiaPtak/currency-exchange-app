@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>{{ i18n.t('settings.title') }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>Settings go here.</p>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ i18n.t('settings.language') }}</ion-label>
+      <ion-select
+        slot="end"
+        interface="popover"
+        [value]="i18n.lang()"
+        (ionChange)="onLangChange($event.detail.value)"
+      >
+        @for (language of i18n.supportedLanguages; track language.code) {
+          <ion-select-option [value]="language.code">{{ language.label }}</ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>{{ i18n.t('settings.theme') }}</ion-label>
+    </ion-item>
+    <ion-segment [value]="theme.mode()" (ionChange)="onThemeChange($event.detail.value)">
+      <ion-segment-button value="light">
+        <ion-label>{{ i18n.t('settings.themeLight') }}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="dark">
+        <ion-label>{{ i18n.t('settings.themeDark') }}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="system">
+        <ion-label>{{ i18n.t('settings.themeSystem') }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-list-header class="ion-margin-top">
+      <ion-label>{{ i18n.t('settings.dataSourceTitle') }}</ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+      <ion-note class="ion-text-wrap">{{ i18n.t('settings.dataSourceInfo') }}</ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>
