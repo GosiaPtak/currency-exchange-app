@@ -5,46 +5,52 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">{{ i18n.t('home.from') }}</ion-label>
-    <ion-input
-      type="text"
-      [placeholder]="i18n.t('home.amountPlaceholder')"
-      [value]="amountExpression()"
-      (ionInput)="onExpressionChange($event.detail.value)"
-    ></ion-input>
-    <ion-select
-      slot="end"
-      interface="popover"
-      [value]="from()"
-      [selectedText]="from()"
-      (ionChange)="onFromChange($event.detail.value)"
-    >
-      @for (entry of currencies() | keyvalue; track entry.key) {
-        <ion-select-option [value]="entry.key">{{ entry.key }} — {{ entry.value }}</ion-select-option>
-      }
-    </ion-select>
-  </ion-item>
+  <div class="currency-field">
+    <div class="currency-field-header">
+      <ion-label>{{ i18n.t('home.from') }}</ion-label>
+      <ion-select
+        interface="popover"
+        [value]="from()"
+        [selectedText]="from()"
+        (ionChange)="onFromChange($event.detail.value)"
+      >
+        @for (entry of currencies() | keyvalue; track entry.key) {
+          <ion-select-option [value]="entry.key">{{ entry.key }} — {{ entry.value }}</ion-select-option>
+        }
+      </ion-select>
+    </div>
+    <ion-item>
+      <ion-input
+        type="text"
+        [placeholder]="i18n.t('home.amountPlaceholder')"
+        [value]="amountExpression()"
+        (ionInput)="onExpressionChange($event.detail.value)"
+      ></ion-input>
+    </ion-item>
+  </div>
 
   <ion-button expand="block" fill="clear" (click)="swap()">
     <ion-icon slot="icon-only" name="swap-vertical-outline"></ion-icon>
   </ion-button>
 
-  <ion-item>
-    <ion-label position="stacked">{{ i18n.t('home.to') }}</ion-label>
-    <ion-input type="text" readonly [value]="result() !== null ? result()!.toFixed(2) : ''"></ion-input>
-    <ion-select
-      slot="end"
-      interface="popover"
-      [value]="to()"
-      [selectedText]="to()"
-      (ionChange)="onToChange($event.detail.value)"
-    >
-      @for (entry of currencies() | keyvalue; track entry.key) {
-        <ion-select-option [value]="entry.key">{{ entry.key }} — {{ entry.value }}</ion-select-option>
-      }
-    </ion-select>
-  </ion-item>
+  <div class="currency-field">
+    <div class="currency-field-header">
+      <ion-label>{{ i18n.t('home.to') }}</ion-label>
+      <ion-select
+        interface="popover"
+        [value]="to()"
+        [selectedText]="to()"
+        (ionChange)="onToChange($event.detail.value)"
+      >
+        @for (entry of currencies() | keyvalue; track entry.key) {
+          <ion-select-option [value]="entry.key">{{ entry.key }} — {{ entry.value }}</ion-select-option>
+        }
+      </ion-select>
+    </div>
+    <ion-item>
+      <ion-input type="text" readonly [value]="result() !== null ? result()!.toFixed(2) : ''"></ion-input>
+    </ion-item>
+  </div>
 
   <div class="ion-text-center ion-margin-top rate-info">
     <ion-icon name="information-circle-outline"></ion-icon>

@@ -1,3 +1,26 @@
+.currency-field {
+  width: 100%;
+}
+
+.currency-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem 0;
+}
+
+.currency-field-header ion-label {
+  color: var(--ion-color-medium);
+  font-size: 0.9rem;
+}
+
+.currency-field-header ion-select {
+  flex: 0 0 auto;
+  max-width: max-content;
+}
+
 .rate-info {
   display: flex;
   align-items: center;
