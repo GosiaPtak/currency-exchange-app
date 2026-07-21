@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
-import { swapVerticalOutline, informationCircleOutline } from 'ionicons/icons';
+import { swapVerticalOutline, informationCircleOutline, cloudOfflineOutline } from 'ionicons/icons';
 import {
   IonHeader,
   IonToolbar,
@@ -19,7 +19,7 @@ import {
   IonIcon,
   IonSpinner,
 } from '@ionic/angular/standalone';
-import { FrankfurterService } from '../core/frankfurter.service';
+import { ConversionResult, FrankfurterService } from '../core/frankfurter.service';
 import { evaluateExpression } from '../core/expression';
 import { TranslationService } from '../core/translation.service';
 
@@ -70,6 +70,8 @@ export class HomePage implements OnInit {
   protected readonly to = signal('EUR');
   protected readonly result = signal<number | null>(null);
   protected readonly rate = signal<number | null>(null);
+  protected readonly rateStale = signal(false);
+  protected readonly rateAsOf = signal<number | null>(null);
   protected readonly loading = signal(false);
   protected readonly error = signal<string | null>(null);
 
@@ -78,8 +80,17 @@ export class HomePage implements OnInit {
     return rate === null ? '—' : `1 ${this.from()} = ${rate.toFixed(4)} ${this.to()}`;
   });
 
+  protected readonly staleRateText = computed(() => {
+    const asOf = this.rateAsOf();
+    if (!this.rateStale() || asOf === null) {
+      return null;
+    }
+    const date = new Date(asOf).toLocaleString(this.i18n.lang());
+    return `${this.i18n.t('home.staleRateNote')} (${date})`;
+  });
+
   constructor() {
-    addIcons({ swapVerticalOutline, informationCircleOutline });
+    addIcons({ swapVerticalOutline, informationCircleOutline, cloudOfflineOutline });
   }
 
   ngOnInit(): void {
@@ -96,7 +107,7 @@ export class HomePage implements OnInit {
         debounceTime(300),
         switchMap(({ amount, from, to }) => {
           if (from === to) {
-            return of(amount);
+            return of<ConversionResult>({ value: amount, stale: false, asOf: null });
           }
           this.loading.set(true);
           this.error.set(null);
@@ -110,9 +121,9 @@ export class HomePage implements OnInit {
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((value) => {
+      .subscribe((conversion) => {
         this.loading.set(false);
-        value !== null && this.result.set(value);
+        conversion !== null && this.result.set(conversion.value);
       });
 
     this.rateRequest$
@@ -120,13 +131,17 @@ export class HomePage implements OnInit {
         distinctUntilChanged((a, b) => a.from === b.from && a.to === b.to),
         switchMap(({ from, to }) => {
           if (from === to) {
-            return of(1);
+            return of<ConversionResult>({ value: 1, stale: false, asOf: null });
           }
           return this.frankfurter.convert(1, from, to).pipe(catchError(() => of(null)));
         }),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((value) => this.rate.set(value));
+      .subscribe((conversion) => {
+        this.rate.set(conversion?.value ?? null);
+        this.rateStale.set(conversion?.stale ?? false);
+        this.rateAsOf.set(conversion?.asOf ?? null);
+      });
 
     this.requestConversion();
     this.requestRate();

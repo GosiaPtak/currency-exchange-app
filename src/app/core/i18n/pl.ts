@@ -10,6 +10,7 @@ export const pl: typeof en = {
   'home.amountPlaceholder': 'np. 100+50*2',
   'home.loadCurrenciesError': 'Nie udało się wczytać listy walut.',
   'home.conversionError': 'Przeliczanie nie powiodło się. Sprawdź połączenie.',
+  'home.staleRateNote': 'Wyświetlany kurs z pamięci podręcznej — może być nieaktualny',
 
   'settings.title': 'Ustawienia',
   'settings.language': 'Język',

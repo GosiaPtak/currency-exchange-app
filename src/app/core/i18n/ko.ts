@@ -10,6 +10,7 @@ export const ko: typeof en = {
   'home.amountPlaceholder': '예: 100+50*2',
   'home.loadCurrenciesError': '통화 목록을 불러올 수 없습니다.',
   'home.conversionError': '환율 변환에 실패했습니다. 연결 상태를 확인하세요.',
+  'home.staleRateNote': '캐시된 환율을 표시 중입니다 — 최신 정보가 아닐 수 있습니다',
 
   'settings.title': '설정',
   'settings.language': '언어',

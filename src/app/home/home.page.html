@@ -57,6 +57,13 @@
     <span>{{ rateText() }}</span>
   </div>
 
+  @if (staleRateText(); as staleNote) {
+    <div class="ion-text-center ion-margin-top rate-info stale-note">
+      <ion-icon name="cloud-offline-outline"></ion-icon>
+      <span>{{ staleNote }}</span>
+    </div>
+  }
+
   <div class="ion-text-center ion-margin-top">
     @if (loading()) {
       <ion-spinner name="dots"></ion-spinner>

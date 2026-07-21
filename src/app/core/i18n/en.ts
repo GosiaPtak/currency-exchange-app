@@ -8,6 +8,7 @@ export const en = {
   'home.amountPlaceholder': 'e.g. 100+50*2',
   'home.loadCurrenciesError': 'Could not load the currency list.',
   'home.conversionError': 'Conversion failed. Check your connection.',
+  'home.staleRateNote': 'Showing a cached rate — may be outdated',
 
   'settings.title': 'Settings',
   'settings.language': 'Language',
